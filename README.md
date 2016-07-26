@@ -2,8 +2,8 @@
 
 ## Languages & Tools
 
-- JavaScript
-- CSS & SASS
+- [JavaScript][javascript]
+- [CSS & SASS][css]
 
 ## About
 
@@ -34,3 +34,6 @@ A description of the mandatory linter and a link to it. Include the required con
 ### Pre-commit Hooks
 
 A description of the required pre-commit hooks to be used for projects that include this language as a component.
+
+[javascript]: https://github.com/chrometoasters/standards-and-tools/tree/master/javascript
+[css]: https://github.com/chrometoasters/standards-and-tools/tree/master/css
