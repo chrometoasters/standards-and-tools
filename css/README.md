@@ -126,7 +126,7 @@ We encourage some combination of OOCSS and BEM for these reasons:
   * Smashing Magazine's [Introduction to OOCSS](http://www.smashingmagazine.com/2011/12/12/an-introduction-to-object-oriented-css-oocss/)
 
 **BEM**, or “Block-Element-Modifier”, is a _naming convention_ for classes in HTML and CSS. It was originally developed by Yandex with large codebases and scalability in mind, and can serve as a solid set of guidelines for implementing OOCSS.
-
+  * [Chrometoaster example BEM stylesheet](https://github.com/chrometoasters/standards-and-tools/blob/master/css/examples/BEM-example.scss)
   * CSS Trick's [BEM 101](https://css-tricks.com/bem-101/)
   * Harry Roberts' [introduction to BEM](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/)
 
@@ -291,7 +291,7 @@ They should always be prefixed with 'h-' and use !important for absolute specifi
 
 ### Media queries
 
-Media queries should be applied at the bottom of your Block's stylesheet. This way we are able to easily scan styles applied at different breakpoints starting with the smallest viewport. See the Block BEM example stylesheet for reference.
+Media queries should be applied at the bottom of your Block's stylesheet. This way we are able to easily scan styles applied at different breakpoints starting with the smallest viewport. See the [Block BEM example](https://github.com/chrometoasters/standards-and-tools/blob/master/css/examples/BEM-example.scss) stylesheet for reference.
 
 ### Mixins
 
