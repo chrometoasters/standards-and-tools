@@ -1,0 +1,84 @@
+// Block vars
+$my-block-text-color: #ddd;
+//...
+
+.My-block {
+
+    // Block styles
+    // ----------------
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    color: $g-text-color;
+
+
+    // Elements
+    // ----------------
+
+    &__secondary-classname {
+        color: $my-block-text-color;
+        border: 3px solid #eee;
+
+        &__tertiary-classname {
+            border: 3px solid #ddd;
+        }
+    }
+
+
+    // Modifiers
+    // ----------------
+
+    &--large {
+        padding: 22px 12px;
+        font-size: 30px;
+        line-height: 30px;
+    }
+
+    &--is-active {
+        color: #ded;
+    }
+
+    &--is-loading {
+        color: #000;
+    }
+
+
+    // Pseudo States
+    // -----------------
+
+    &:hover {
+        // An inline comment would look like this
+        color: #ddd;
+        cursor: pointer;
+        background-color: #fff;
+        border: 5px solid #f7f7f7;
+    }
+
+    &:focus {
+        background-color: #ddd;
+    }
+
+    &:active {
+        background-color: #f0f0f0;
+    }
+
+
+    // ----------------
+    // Media Queries
+    // ----------------
+    // scss-lint:disable DeclarationOrder
+    @include media($small) {
+    // scss-lint:enable DeclarationOrder
+
+    }
+
+    @include media($medium) {
+
+    }
+
+    @include media($large) {
+
+    }
+}
