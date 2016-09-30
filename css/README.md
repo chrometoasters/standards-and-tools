@@ -1,6 +1,4 @@
-# Airbnb CSS / Sass Styleguide
-
-*A mostly reasonable approach to CSS and Sass*
+# Chrometoaster CSS / Sass Styleguide
 
 ## Table of Contents
 
@@ -66,7 +64,7 @@ Finally, properties are what give the selected elements of a rule declaration th
 
 ### Formatting
 
-* Use soft tabs (2 spaces) for indentation
+* Use soft tabs (4 spaces) for indentation
 * Prefer dashes over camelCasing in class names.
   - Underscores and PascalCasing are okay if you are using BEM (see [OOCSS and BEM](#oocss-and-bem) below).
 * Do not use ID selectors
@@ -255,6 +253,46 @@ Use `0` instead of `none` to specify that a style has no border.
 
 Prefer dash-cased variable names (e.g. `$my-variable`) over camelCased or snake_cased variable names. It is acceptable to prefix variable names that are intended to be used only within the same file with an underscore (e.g. `$_my-variable`).
 
+Variables can be defined within a BEM block stylesheet and/or within a gobally availble varibles stylesheet.
+
+To distinguish between BEM block and global variables they should be defined with a different prefix.
+```scss
+.my-element {
+  // This variable is defined within a global variable stylesheet
+  color: $g-text-color;
+  // This variable is defined locally within this block
+  background-color: ${BEM-block-name}-bg-color;
+}
+```
+
+### Helpers
+
+Helper classes can be extended within BEM blocks or referenced directly in the html. They are used to apply some kind of globally available style to an element. By definition these classes should always be simple seletors (never nested) and therefore do not warrant being written using BEM syntax.
+
+They should always be prefixed with 'h-' and use !important for absolute specificity. Use sparingly!
+
+**Bad Helper**
+
+```css
+.some-element {
+  .h-text-centered {
+      text-align: center !important;
+  }
+}
+```
+
+**Good**
+
+```css
+.h-text-centered {
+      text-align: center !important;
+  }
+```
+
+### Media queries
+
+Media queries should be applied at the bottom of your Block's stylesheet. This way we are able to easily scan styles applied at different breakpoints starting with the smallest viewport. See the Block BEM example stylesheet for reference.
+
 ### Mixins
 
 Mixins should be used to DRY up your code, add clarity, or abstract complexity--in much the same way as well-named functions. Mixins that accept no arguments can be useful for this, but note that if you are not compressing your payload (e.g. gzip), this may contribute to unnecessary code duplication in the resulting styles.
@@ -287,14 +325,3 @@ When selectors become this long, you're likely writing CSS that is:
 Again: **never nest ID selectors!**
 
 If you must use an ID selector in the first place (and you should really try not to), they should never be nested. If you find yourself doing this, you need to revisit your markup, or figure out why such strong specificity is needed. If you are writing well formed HTML and CSS, you should **never** need to do this.
-
-## Translation
-
-  This style guide is also available in other languages:
-
-  - ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chinese (Simplified)**: [Zhangjd/css-style-guide](https://github.com/Zhangjd/css-style-guide)
-  - ![ja](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Japan.png) **Japanese**: [nao215/css-style-guide](https://github.com/nao215/css-style-guide)
-  - ![ko](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/South-Korea.png) **Korean**: [CodeMakeBros/css-style-guide](https://github.com/CodeMakeBros/css-style-guide)
-  - ![PT-BR](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Brazil.png) **Portuguese**: [felipevolpatto/css-style-guide](https://github.com/felipevolpatto/css-style-guide)  
-  - ![ru](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Russia.png) **Russian**: [Nekorsis/css-style-guide](https://github.com/Nekorsis/css-style-guide)
-  - ![es](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Spain.png) **Spanish**: [ismamz/guia-de-estilo-css](https://github.com/ismamz/guia-de-estilo-css)
