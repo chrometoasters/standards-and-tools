@@ -242,13 +242,13 @@ Use `0` instead of `none` to specify that a style has no border.
 
 2. `@include` declarations
 
-    Grouping `@include`s at the end makes it easier to read the entire selector.
+    Grouping `@include`s at the beginning makes it easier to read the entire selector.
 
     ```scss
     .btn-green {
+      @include transition(background 0.5s ease);
       background: green;
       font-weight: bold;
-      @include transition(background 0.5s ease);
       // ...
     }
     ```
@@ -259,9 +259,9 @@ Use `0` instead of `none` to specify that a style has no border.
 
     ```scss
     .btn {
+      @include transition(background 0.5s ease);
       background: green;
       font-weight: bold;
-      @include transition(background 0.5s ease);
 
       .icon {
         margin-right: 10px;
