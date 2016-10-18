@@ -17,6 +17,8 @@
     - [Syntax](#syntax)
     - [Ordering](#ordering-of-property-declarations)
     - [Variables](#variables)
+    - [Helpers](#helpers)
+    - [Media Queries](#media-queries)
     - [Mixins](#mixins)
     - [Extend directive](#extend-directive)
     - [Nested selectors](#nested-selectors)
@@ -130,7 +132,7 @@ We encourage some combination of OOCSS and BEM for these reasons:
   * CSS Trick's [BEM 101](https://css-tricks.com/bem-101/)
   * Harry Roberts' [introduction to BEM](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/)
 
-We recommend a variant of BEM with PascalCased “blocks”, which works particularly well when combined with components (e.g. React). Underscores and dashes are still used for modifiers and children.
+We recommend a variant of BEM with PascalCased “blocks”, which works particularly well when combined with components (e.g. Silverstripe includes, React). Underscores and dashes are still used for modifiers and children.
 
 **Example**
 
@@ -176,7 +178,25 @@ Avoid binding to the same class in both your CSS and JavaScript. Conflating the 
 We recommend creating JavaScript-specific classes to bind to, prefixed with `.js-`:
 
 ```html
-<button class="btn btn-primary js-request-to-book">Request to Book</button>
+<button class="btn btn--primary js-request-to-book">Request to Book</button>
+```
+
+If however the JavaScript adds or manipulates a class that should invoke a style change, the selector should indicate that it is ALSO used as a javascript hook. This is done by appending '-js' to the class name. This serves as a warning that when editing this part of the stylesheet we should cross reference / update and validate the JavaScript also.
+
+**Bad**
+
+```css
+.foo--is-active {
+  color: red;
+}
+```
+
+**Good**
+
+```css
+.foo--is-active-js {
+  color: red;
+}
 ```
 
 ### Border
@@ -267,7 +287,7 @@ To distinguish between BEM block and global variables they should be defined wit
 
 ### Helpers
 
-Helper classes can be extended within BEM blocks or referenced directly in the html. They are used to apply some kind of globally available style to an element. By definition these classes should always be simple seletors (never nested) and therefore do not warrant being written using BEM syntax.
+Helper classes can be extended within BEM blocks or referenced directly in the html. They are used to apply some kind of globally available style to an element. By definition these classes should always be simple seletors (never nested) and therefore do not warrant being written using BEM syntax. They should be written using the % placeholder selector to help avoid bloat if not used and prevent issues with inheritance and extending.
 
 They should always be prefixed with 'h-' and use !important for absolute specificity. Use sparingly!
 
@@ -284,9 +304,9 @@ They should always be prefixed with 'h-' and use !important for absolute specifi
 **Good**
 
 ```css
-.h-text-centered {
-      text-align: center !important;
-  }
+%h-text-centered {
+  text-align: center !important;
+}
 ```
 
 ### Media queries
@@ -299,7 +319,7 @@ Mixins should be used to DRY up your code, add clarity, or abstract complexity--
 
 ### Extend directive
 
-`@extend` should be avoided because it has unintuitive and potentially dangerous behavior, especially when used with nested selectors. Even extending top-level placeholder selectors can cause problems if the order of selectors ends up changing later (e.g. if they are in other files and the order the files are loaded shifts). Gzipping should handle most of the savings you would have gained by using `@extend`, and you can DRY up your stylesheets nicely with mixins.
+`@extend` should be avoided, unless used to extend a placeholder helper ( See [Helpers](#helpers)). This is because it has unintuitive and potentially dangerous behavior, especially when used with nested selectors. Gzipping should handle most of the savings you would have gained by using `@extend`, and you can DRY up your stylesheets nicely with mixins.
 
 ### Nested selectors
 

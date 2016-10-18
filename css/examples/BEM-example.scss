@@ -2,7 +2,8 @@
 $my-block-text-color: #ddd;
 //...
 
-.My-block {
+// Use Pascal case (UpperCamelCase) for Block declaration.
+.MyBlock {
 
     // Block styles
     // ----------------
@@ -11,19 +12,33 @@ $my-block-text-color: #ddd;
     width: 100%;
     max-width: 320px;
     margin: 0 auto;
+    // An inline comment would look like this and should always be on it's own line.
     color: $g-text-color;
 
 
     // Elements
     // ----------------
 
-    &__secondary-classname {
+    &__some-element {
         color: $my-block-text-color;
         border: 3px solid #eee;
 
-        &__tertiary-classname {
-            border: 3px solid #ddd;
+        &:last-child {
+            // When having to nest inside another element due to use of pseudo seletor use this 'element nesting function' (e-nest) to generate a nested selector.
+            // This will not be used as often as the similar m-nest function. See _BEM-helpers.scss for function source.
+            #{e-nest()}__secondary-classname {
+                border-color: #000;
+            }
         }
+    }
+
+    &__another-element {
+        border: 3px solid #ddd;
+    }
+
+    // This element is also targeted with js
+    &__another-element-js {
+        border: 3px solid #eee;
     }
 
 
@@ -34,13 +49,21 @@ $my-block-text-color: #ddd;
         padding: 22px 12px;
         font-size: 30px;
         line-height: 30px;
+
+        // When nesting inside a modifier use this 'modifier nesting function' (m-nest) to generate a nested selector.
+        // This wil be used more frequently than the similar e-nest function.
+        #{m-nest()}__secondary-classname {
+            border-color: #000;
+        }
     }
 
-    &--is-active {
+
+    // Modifiers that are also targetted by js.
+    &--is-active-js {
         color: #ded;
     }
 
-    &--is-loading {
+    &--is-loading-js {
         color: #000;
     }
 
@@ -49,7 +72,6 @@ $my-block-text-color: #ddd;
     // -----------------
 
     &:hover {
-        // An inline comment would look like this
         color: #ddd;
         cursor: pointer;
         background-color: #fff;
@@ -68,6 +90,7 @@ $my-block-text-color: #ddd;
     // ----------------
     // Media Queries
     // ----------------
+    // The following comment temporarily disables the declarationOrder lint.
     // scss-lint:disable DeclarationOrder
     @include media($small) {
     // scss-lint:enable DeclarationOrder
